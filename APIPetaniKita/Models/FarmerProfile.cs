@@ -19,8 +19,6 @@ namespace APIPetaniKita.Models
         public int RegencyId { get; set; }
         public int DistrictId { get; set; }
 
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
         public string Address { get; set; }
 
         [ForeignKey("UserId")]

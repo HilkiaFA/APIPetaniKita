@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using APIPetaniKita.Data;
 using APIPetaniKita.DTOs;
 using APIPetaniKita.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace APIPetaniKita.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] 
+    [Authorize]
     public class LocationsController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -36,7 +37,7 @@ namespace APIPetaniKita.Controllers
                 .Include(l => l.Province)
                 .Include(l => l.Regency)
                 .Include(l => l.District)
-                .Where(l => l.UserId == userId)
+                .Where(l => l.UserId == userId && l.delete_at == null)
                 .Select(l => new LocationResponseDto
                 {
                     LocationId = l.LocationId,
@@ -64,7 +65,8 @@ namespace APIPetaniKita.Controllers
                 ProvinceId = request.ProvinceId,
                 RegencyId = request.RegencyId,
                 DistrictId = request.DistrictId,
-                Address = request.Address
+                Address = request.Address,
+                delete_at = null 
             };
 
             _context.Locations.Add(newLocation);
@@ -79,7 +81,7 @@ namespace APIPetaniKita.Controllers
             int userId = GetCurrentUserId();
 
             var location = await _context.Locations
-                .FirstOrDefaultAsync(l => l.LocationId == id && l.UserId == userId);
+                .FirstOrDefaultAsync(l => l.LocationId == id && l.UserId == userId && l.delete_at == null);
 
             if (location == null)
                 return NotFound(new { message = "Lokasi tidak ditemukan atau Anda tidak memiliki akses." });
@@ -101,15 +103,17 @@ namespace APIPetaniKita.Controllers
             int userId = GetCurrentUserId();
 
             var location = await _context.Locations
-                .FirstOrDefaultAsync(l => l.LocationId == id && l.UserId == userId);
+                .FirstOrDefaultAsync(l => l.LocationId == id && l.UserId == userId && l.delete_at == null);
 
             if (location == null)
-                return NotFound(new { message = "Lokasi tidak ditemukan atau Anda tidak memiliki akses." });
+                return NotFound(new { message = "Lokasi tidak ditemukan atau sudah dihapus sebelumnya." });
 
-            _context.Locations.Remove(location);
+            location.delete_at = DateTime.Now;
+
+            _context.Locations.Update(location);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Lokasi berhasil dihapus." });
+            return Ok(new { message = "Lokasi berhasil dihapus (Soft Delete)." });
         }
     }
 }

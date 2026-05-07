@@ -26,9 +26,6 @@ namespace APIPetaniKita.Controllers
             return int.Parse(userIdClaim ?? "0");
         }
 
-   
-
-        
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> GetAllProducts([FromQuery] int? provinceId, [FromQuery] int? regencyId, [FromQuery] int? districtId)
@@ -70,7 +67,6 @@ namespace APIPetaniKita.Controllers
             return Ok(products);
         }
 
-
         [HttpGet("{id:int}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetProductById(int id)
@@ -102,7 +98,6 @@ namespace APIPetaniKita.Controllers
 
             return Ok(product);
         }
-
 
         [HttpGet("my")]
         [Authorize]
@@ -208,19 +203,29 @@ namespace APIPetaniKita.Controllers
 
             return Ok(new { message = "Produk berhasil dihapus." });
         }
+
         [HttpGet("search")]
         [AllowAnonymous]
-        public async Task<IActionResult> SearchProducts([FromQuery] string q)
+        public async Task<IActionResult> SearchProducts([FromQuery] string q, [FromQuery] int? provinceId, [FromQuery] int? regencyId)
         {
             if (string.IsNullOrWhiteSpace(q))
                 return BadRequest(new { message = "Parameter pencarian 'q' tidak boleh kosong." });
 
-            var products = await _context.Products
+            var query = _context.Products
                 .Include(p => p.FarmerProfile)
                 .Include(p => p.Province)
                 .Include(p => p.Regency)
                 .Include(p => p.District)
                 .Where(p => p.ProductName.Contains(q) || p.Description.Contains(q))
+                .AsQueryable();
+
+            if (provinceId.HasValue && provinceId.Value > 0)
+                query = query.Where(p => p.ProvinceId == provinceId.Value);
+
+            if (regencyId.HasValue && regencyId.Value > 0)
+                query = query.Where(p => p.RegencyId == regencyId.Value);
+
+            var products = await query
                 .Select(p => new ProductResponseDto
                 {
                     ProductId = p.ProductId,
@@ -239,83 +244,9 @@ namespace APIPetaniKita.Controllers
                 .ToListAsync();
 
             if (!products.Any())
-                return NotFound(new { message = $"Tidak ditemukan produk dengan kata kunci '{q}'." });
+                return NotFound(new { message = $"Tidak ditemukan produk dengan kata kunci '{q}' di lokasi tersebut." });
 
             return Ok(products);
-        }
-
-        [HttpGet("nearby")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetNearbyProducts([FromQuery] double lat, [FromQuery] double lng, [FromQuery] double radius = 10) // default radius 10 km
-        {
-            double latDelta = radius / 111.0;
-            double lngDelta = radius / (111.0 * Math.Cos(lat * (Math.PI / 180.0)));
-
-            double minLat = lat - latDelta;
-            double maxLat = lat + latDelta;
-            double minLng = lng - lngDelta;
-            double maxLng = lng + lngDelta;
-
-           
-            var rawProducts = await _context.Products
-                .Include(p => p.FarmerProfile)
-                .Include(p => p.Province)
-                .Include(p => p.Regency)
-                .Include(p => p.District)
-                .Where(p => p.FarmerProfile.Latitude != null && p.FarmerProfile.Longitude != null &&
-                            p.FarmerProfile.Latitude >= minLat && p.FarmerProfile.Latitude <= maxLat &&
-                            p.FarmerProfile.Longitude >= minLng && p.FarmerProfile.Longitude <= maxLng)
-                .ToListAsync();
-
-           
-            var nearbyProducts = rawProducts
-                .Select(p => new
-                {
-                    Product = p,
-                    Distance = CalculateDistance(lat, lng, p.FarmerProfile.Latitude.Value, p.FarmerProfile.Longitude.Value)
-                })
-                .Where(x => x.Distance <= radius) 
-                .OrderBy(x => x.Distance) 
-                .Select(x => new ProductResponseDto
-                {
-                    ProductId = x.Product.ProductId,
-                    FarmerId = x.Product.FarmerId,
-                    FarmName = x.Product.FarmerProfile.FarmName,
-                    ProductName = x.Product.ProductName,
-                    Description = x.Product.Description,
-                    Price = x.Product.Price,
-                    Stock = x.Product.Stock,
-                    ProvinceName = x.Product.Province.ProvinceName,
-                    RegencyName = x.Product.Regency.RegencyName,
-                    DistrictName = x.Product.District.DistrictName,
-                    CreatedAt = x.Product.CreatedAt,
-                    DistanceKm = Math.Round(x.Distance, 2) 
-                })
-                .ToList();
-
-            if (!nearbyProducts.Any())
-                return NotFound(new { message = $"Tidak ada produk dalam radius {radius} km dari lokasi Anda." });
-
-            return Ok(nearbyProducts);
-        }
-
-        private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
-        {
-            var r = 6371; 
-            var dLat = ToRadians(lat2 - lat1);
-            var dLon = ToRadians(lon2 - lon1);
-
-            var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
-                    Math.Cos(ToRadians(lat1)) * Math.Cos(ToRadians(lat2)) *
-                    Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
-
-            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-            return r * c;
-        }
-
-        private double ToRadians(double angle)
-        {
-            return Math.PI * angle / 180.0;
         }
     }
 }

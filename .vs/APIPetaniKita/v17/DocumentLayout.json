@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|c:\\users\\asust\\source\\repos\\apipetanikita\\apipetanikita\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|solutionrelative:apipetanikita\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|c:\\users\\asust\\source\\repos\\apipetanikita\\apipetanikita\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|solutionrelative:apipetanikita\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|c:\\users\\asust\\source\\repos\\apipetanikita\\apipetanikita\\models\\farmerprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|solutionrelative:apipetanikita\\models\\farmerprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|c:\\users\\asust\\source\\repos\\apipetanikita\\apipetanikita\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|solutionrelative:apipetanikita\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|c:\\users\\asust\\source\\repos\\apipetanikita\\apipetanikita\\controllers\\wilayahcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DC57615-05F2-46B7-8FF3-989D3F95D635}|APIPetaniKita\\APIPetaniKita.csproj|solutionrelative:apipetanikita\\controllers\\wilayahcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,53 +27,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "APIPetaniKita\\Controllers\\ProductsController.cs",
-              "ToolTip": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "APIPetaniKita\\Controllers\\ProductsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAANkAAAAAAAAAAAAAAA==",
+              "Title": "WilayahController.cs",
+              "DocumentMoniker": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\Controllers\\WilayahController.cs",
+              "RelativeDocumentMoniker": "APIPetaniKita\\Controllers\\WilayahController.cs",
+              "ToolTip": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\Controllers\\WilayahController.cs",
+              "RelativeToolTip": "APIPetaniKita\\Controllers\\WilayahController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T09:54:01.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductDto.cs",
-              "DocumentMoniker": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\DTOs\\ProductDto.cs",
-              "RelativeDocumentMoniker": "APIPetaniKita\\DTOs\\ProductDto.cs",
-              "ToolTip": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\DTOs\\ProductDto.cs",
-              "RelativeToolTip": "APIPetaniKita\\DTOs\\ProductDto.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBQAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T09:53:03.482Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FarmerProfile.cs",
-              "DocumentMoniker": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\Models\\FarmerProfile.cs",
-              "RelativeDocumentMoniker": "APIPetaniKita\\Models\\FarmerProfile.cs",
-              "ToolTip": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\Models\\FarmerProfile.cs",
-              "RelativeToolTip": "APIPetaniKita\\Models\\FarmerProfile.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBYAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T09:52:44.328Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PaymentsController.cs",
-              "DocumentMoniker": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\Controllers\\PaymentsController.cs",
-              "RelativeDocumentMoniker": "APIPetaniKita\\Controllers\\PaymentsController.cs",
-              "ToolTip": "C:\\Users\\asust\\source\\repos\\APIPetaniKita\\APIPetaniKita\\Controllers\\PaymentsController.cs",
-              "RelativeToolTip": "APIPetaniKita\\Controllers\\PaymentsController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAYwAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T09:39:14.926Z",
+              "WhenOpened": "2026-05-07T18:06:33.999Z",
               "EditorCaption": ""
             }
           ]

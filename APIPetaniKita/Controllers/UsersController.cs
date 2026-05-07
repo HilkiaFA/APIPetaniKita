@@ -54,7 +54,6 @@ namespace APIPetaniKita.Controllers
             return Ok(profileDto);
         }
 
-        // PUT: api/users/profile
         [HttpPut("profile")]
         public IActionResult UpdateProfile([FromBody] UpdateProfileDto request)
         {
@@ -64,7 +63,6 @@ namespace APIPetaniKita.Controllers
             if (user == null)
                 return NotFound("User tidak ditemukan.");
 
-            // Update data
             user.FullName = request.FullName;
             user.Email = request.Email;
             user.Phone = request.Phone;
@@ -75,13 +73,11 @@ namespace APIPetaniKita.Controllers
             return Ok(new { message = "Profile berhasil diperbarui." });
         }
 
-        // POST: api/users/become-farmer
         [HttpPost("become-farmer")]
         public IActionResult BecomeFarmer([FromBody] BecomeFarmerDto request)
         {
             int userId = GetCurrentUserId();
 
-            // 1. Cek apakah user sudah punya role Petani
             var rolePetani = _context.Roles.FirstOrDefault(r => r.RoleName == "Petani");
             if (rolePetani == null)
                 return StatusCode(500, "Role 'Petani' tidak ditemukan di database.");
@@ -92,7 +88,6 @@ namespace APIPetaniKita.Controllers
             if (isAlreadyFarmer)
                 return BadRequest("User sudah memiliki role Petani.");
 
-            // 2. Tambahkan Role Petani ke UserRoles
             var newUserRole = new UserRole
             {
                 UserId = userId,
@@ -100,8 +95,7 @@ namespace APIPetaniKita.Controllers
             };
             _context.UserRoles.Add(newUserRole);
 
-            // 3. Buat FarmerProfile baru
-            // Asumsi kamu sudah punya class FarmerProfile di folder Models
+           
             var farmerProfile = new FarmerProfile
             {
                 UserId = userId,
@@ -116,9 +110,7 @@ namespace APIPetaniKita.Controllers
             _context.FarmerProfiles.Add(farmerProfile);
             _context.SaveChanges();
 
-            // Opsional: Karena token JWT menyimpan role, setelah ganti role, token lama tidak akan punya role "Petani".
-            // Di Front-End, kamu perlu meminta user untuk relogin agar token baru membawa role "Petani", 
-            // atau kamu bisa me-return token baru dari endpoint ini.
+
 
             return Ok(new { message = "Berhasil mendaftar sebagai Petani. Silakan login ulang untuk memperbarui sesi." });
         }

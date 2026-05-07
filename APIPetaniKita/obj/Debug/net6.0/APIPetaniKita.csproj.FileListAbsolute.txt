@@ -77,3 +77,6 @@ C:\Users\asust\source\repos\APIPetaniKita\APIPetaniKita\obj\Debug\net6.0\refint\
 C:\Users\asust\source\repos\APIPetaniKita\APIPetaniKita\obj\Debug\net6.0\APIPetaniKita.pdb
 C:\Users\asust\source\repos\APIPetaniKita\APIPetaniKita\obj\Debug\net6.0\APIPetaniKita.genruntimeconfig.cache
 C:\Users\asust\source\repos\APIPetaniKita\APIPetaniKita\obj\Debug\net6.0\ref\APIPetaniKita.dll
+C:\Users\asust\source\repos\APIPetaniKita\APIPetaniKita\obj\Debug\net6.0\APIPetaniKita.sourcelink.json
+C:\Users\asust\source\repos\APIPetaniKita\APIPetaniKita\bin\Debug\net6.0\Humanizer.dll
+C:\Users\asust\source\repos\APIPetaniKita\APIPetaniKita\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
