@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using APIPetaniKita.Data;
+using APIPetaniKita.DTOs; // Memanggil namespace DTOs
+using APIPetaniKita.DTOs.APIPetaniKita.DTOs;
+using APIPetaniKita.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using APIPetaniKita.Data;
-using APIPetaniKita.DTOs;
-using APIPetaniKita.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -56,6 +57,11 @@ namespace APIPetaniKita.Controllers
                     Description = p.Description,
                     Price = p.Price,
                     Stock = p.Stock,
+
+                    ProvinceId = p.ProvinceId,
+                    RegencyId = p.RegencyId,
+                    DistrictId = p.DistrictId,
+
                     ProvinceName = p.Province.ProvinceName,
                     RegencyName = p.Regency.RegencyName,
                     DistrictName = p.District.DistrictName,
@@ -86,6 +92,11 @@ namespace APIPetaniKita.Controllers
                     Description = p.Description,
                     Price = p.Price,
                     Stock = p.Stock,
+
+                    ProvinceId = p.ProvinceId,
+                    RegencyId = p.RegencyId,
+                    DistrictId = p.DistrictId,
+
                     ProvinceName = p.Province.ProvinceName,
                     RegencyName = p.Regency.RegencyName,
                     DistrictName = p.District.DistrictName,
@@ -119,6 +130,12 @@ namespace APIPetaniKita.Controllers
                     Description = p.Description,
                     Price = p.Price,
                     Stock = p.Stock,
+
+                    // --- Tambahan ID Wilayah ---
+                    ProvinceId = p.ProvinceId,
+                    RegencyId = p.RegencyId,
+                    DistrictId = p.DistrictId,
+
                     ProvinceName = p.Province.ProvinceName,
                     RegencyName = p.Regency.RegencyName,
                     DistrictName = p.District.DistrictName,
@@ -235,6 +252,11 @@ namespace APIPetaniKita.Controllers
                     Description = p.Description,
                     Price = p.Price,
                     Stock = p.Stock,
+
+                    ProvinceId = p.ProvinceId,
+                    RegencyId = p.RegencyId,
+                    DistrictId = p.DistrictId,
+
                     ProvinceName = p.Province.ProvinceName,
                     RegencyName = p.Regency.RegencyName,
                     DistrictName = p.District.DistrictName,
