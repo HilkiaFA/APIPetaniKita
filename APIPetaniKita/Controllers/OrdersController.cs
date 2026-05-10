@@ -179,5 +179,43 @@ namespace APIPetaniKita.Controllers
 
             return Ok(new { message = $"Status pesanan berhasil diubah menjadi {request.Status}." });
         }
+
+        [HttpGet("product/{productId:int}")]
+        public async Task<IActionResult> GetOrdersByProduct(int productId)
+        {
+            int userId = GetCurrentUserId();
+
+            var farmer = await _context.FarmerProfiles.FirstOrDefaultAsync(f => f.UserId == userId);
+            if (farmer == null)
+            {
+                return Unauthorized(new { message = "Anda belum terdaftar sebagai Penjual/Petani." });
+            }
+
+            var isProductOwned = await _context.Products
+                .AnyAsync(p => p.ProductId == productId && p.FarmerId == farmer.FarmerId);
+
+            if (!isProductOwned)
+            {
+                return Unauthorized(new { message = "Anda tidak memiliki akses ke data penjualan produk ini." });
+            }
+
+            var buyersData = await _context.OrderDetails
+                .Include(od => od.Order)
+                    .ThenInclude(o => o.User)
+                .Where(od => od.ProductId == productId)
+                .Select(od => new BuyerOrderDetailDto
+                {
+                    BuyerName = string.IsNullOrEmpty(od.Order.User.FullName) ? "Hamba Allah" : od.Order.User.FullName,
+                    Quantity = od.Quantity,
+                    Price = od.Price,
+                    SubTotal = od.SubTotal,
+                    Status = od.Order.Status,
+                    OrderDate = od.Order.OrderDate
+                })
+                .OrderByDescending(o => o.OrderDate) 
+                .ToListAsync();
+
+            return Ok(buyersData);
+        }
     }
 }

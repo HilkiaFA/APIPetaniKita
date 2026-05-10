@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("APIPetaniKita")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8ded12b84d6564c72362cd87df34954d2b061d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20be9b3424db2ba0a4abd9937b76b267e826238a")]
 [assembly: System.Reflection.AssemblyProductAttribute("APIPetaniKita")]
 [assembly: System.Reflection.AssemblyTitleAttribute("APIPetaniKita")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
